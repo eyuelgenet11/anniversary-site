@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Dancing+Script:wght@700&display=swap');
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #ff9a9e;
+  overflow-x: hidden;
+  color: white;
+}
+
+/* Background & Starry Night */
+.video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+}
+
+.bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5) blur(2px);
+}
+
+.star-container {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  width: 2px; height: 2px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 5px white;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Header & Music Toggle */
+header h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.5rem;
+  margin-bottom: 5px;
+}
+
+.music-toggle-header {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid white;
+  padding: 10px 25px;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+  margin-bottom: 20px;
+}
+
+.vinyl-icon { font-size: 1.4rem; }
+.playing .vinyl-icon { animation: spin 3s linear infinite; }
+
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Layout Centering */
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Timeline Styling */
+.timeline-section { width: 100%; margin: 50px 0; }
+.timeline-container { position: relative; margin-top: 30px; }
+.timeline-container::before {
+  content: ''; position: absolute; left: 50%; width: 2px; height: 100%;
+  background: rgba(255,255,255,0.4); transform: translateX(-50%);
+}
+
+.timeline-item { display: flex; justify-content: center; align-items: center; margin-bottom: 40px; position: relative; width: 100%; }
+.timeline-dot {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  background: white; width: 30px; height: 30px; border-radius: 50%;
+  display: flex; justify-content: center; align-items: center; z-index: 2;
+}
+
+.timeline-content {
+  width: 42%; background: rgba(255,255,255,0.15); padding: 20px;
+  border-radius: 15px; text-align: left; backdrop-filter: blur(5px);
+}
+
+.timeline-item:nth-child(odd) { justify-content: flex-start; }
+.timeline-item:nth-child(even) { justify-content: flex-end; }
+
+/* Memory Polaroids */
+.photo-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 30px 0; }
+.polaroid {
+  background: white; padding: 10px 10px 25px; width: 180px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2); color: #333; cursor: pointer;
+}
+.polaroid img { width: 100%; height: 160px; object-fit: cover; }
+
+/* UI Elements */
+.love-btn {
+  background: linear-gradient(45deg, #ff4d6d, #ff758f);
+  color: white; border: none; padding: 12px 30px; border-radius: 50px;
+  cursor: pointer; font-weight: bold; margin-top: 10px;
+}
+
+.big-btn { padding: 15px 40px; font-size: 1.2rem; margin-top: 30px; }
+
+/* Modals */
+.modal {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+  display: flex; justify-content: center; align-items: center; z-index: 2000;
+  backdrop-filter: blur(8px);
+}
+
+.letter-card {
+  background: white; color: #333; padding: 40px; border-radius: 20px;
+  width: 90%; max-width: 400px;
+}
+
+.voice-player {
+  background: #fff0f3; color: #ff4d6d; padding: 15px;
+  border-radius: 15px; margin-bottom: 20px; cursor: pointer;
+  border: 1px dashed #ff4d6d; font-weight: bold;
+}
+
+.scratch-container { position: relative; width: 200px; height: 200px; border: 4px solid white; margin: 20px auto; overflow: hidden; }
+canvas { position: absolute; top: 0; left: 0; cursor: crosshair; }
+
+.login-screen { height: 100vh; display: flex; justify-content: center; align-items: center; background: #ff9a9e; }
+.login-card { background: white; padding: 40px; border-radius: 20px; text-align: center; color: #333; }
+.login-card input { margin: 20px auto; padding: 10px; border-radius: 10px; border: 1px solid #ddd; display: block; }
+
+.confetti { position: fixed; top: -10px; z-index: 999; animation: fall linear forwards; }
+@keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+/* Mobile Timeline Adjust */
+@media (max-width: 600px) {
+  .timeline-container::before { left: 20px; }
+  .timeline-dot { left: 20px; }
+  .timeline-item { justify-content: flex-start !important; }
+  .timeline-content { width: 80%; margin-left: 50px; }
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Dancing+Script:wght@700&display=swap');
+
+body { margin: 0; font-family: 'Poppins', sans-serif; background: #ff9a9e; color: white; overflow-x: hidden; }
+
+/* Video & Starry Night */
+.video-container { position: fixed; inset: 0; z-index: -2; }
+.bg-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5) blur(2px); }
+.star-container { position: fixed; inset: 0; pointer-events: none; z-index: -1; }
+.star { position: absolute; width: 2px; height: 2px; background: white; border-radius: 50%; animation: twinkle 3s infinite ease-in-out; }
+@keyframes twinkle { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+
+/* Centered Content Wrapper */
+.app, .content-wrapper { display: flex; flex-direction: column; align-items: center; width: 100%; text-align: center; }
+.content-wrapper { max-width: 800px; padding: 40px 20px; }
+
+/* Header & Toggle */
+header h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; }
+.music-toggle-header { background: rgba(255,255,255,0.2); border: 1px solid white; padding: 8px 20px; border-radius: 50px; cursor: pointer; backdrop-filter: blur(5px); }
+.playing .vinyl-icon { display: inline-block; animation: spin 3s linear infinite; }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Countdown */
+.timer-display { display: flex; gap: 15px; font-size: 0.9rem; margin-top: 15px; }
+.timer-display span { font-weight: bold; font-size: 1.5rem; display: block; }
+
+/* Note Box & Grids */
+.note-box { background: rgba(255,255,255,0.2); padding: 15px; border-radius: 15px; margin: 20px 0; cursor: pointer; width: 100%; max-width: 400px; }
+.reason-grid, .folder-grid, .photo-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin: 20px 0; }
+.reason-card, .folder-btn { background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 10px; border: 1px solid white; color: white; cursor: pointer; }
+
+/* Timeline */
+.timeline-section { position: relative; width: 100%; margin: 40px 0; }
+.timeline-container::before { content: ''; position: absolute; left: 50%; width: 2px; height: 100%; background: white; opacity: 0.3; }
+.timeline-item { display: flex; justify-content: center; width: 100%; margin: 20px 0; position: relative; }
+.timeline-dot { position: absolute; left: 50%; transform: translateX(-50%); background: white; border-radius: 50%; padding: 5px; }
+.timeline-content { width: 40%; background: rgba(255,255,255,0.15); padding: 15px; border-radius: 15px; text-align: left; }
+.timeline-item.left { justify-content: flex-start; }
+.timeline-item.right { justify-content: flex-end; }
+
+/* Modals & Scratch */
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 100; backdrop-filter: blur(5px); }
+.letter-card { background: white; color: #333; padding: 30px; border-radius: 20px; max-width: 400px; width: 90%; }
+.scratch-container { position: relative; width: 200px; height: 200px; border: 4px solid white; margin: 0 auto; overflow: hidden; border-radius: 10px; }
+canvas { position: absolute; top: 0; left: 0; cursor: crosshair; }
+.polaroid { background: white; padding: 10px; color: #333; width: 160px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); cursor: pointer; }
+.polaroid img { width: 100%; height: 140px; object-fit: cover; }
+.love-btn { background: #ff4d6d; color: white; border: none; padding: 10px 20px; border-radius: 50px; cursor: pointer; font-weight: bold; }
+.confetti { position: fixed; top: -50px; z-index: 999; animation: fall linear forwards; }
+@keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+/* Login */
+.login-screen { height: 100vh; display: flex; align-items: center; justify-content: center; background: #ff9a9e; }
+.login-card { background: white; color: #333; padding: 40px; border-radius: 20px; text-align: center; }
+.login-card input { display: block; margin: 15px auto; padding: 10px; border-radius: 5px; border: 1px solid #ddd; }
