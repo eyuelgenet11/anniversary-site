@@ -391,3 +391,51 @@ body {
 }
 
 .modal-card h2 { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #ff4d6d; }
+/* --- RESPONSIVE FIXES (Only for Mobile) --- */
+@media (max-width: 600px) {
+  /* Fixes the "nudge" so it centers on mobile */
+  .nudge-left { 
+    transform: translateX(0px); 
+  }
+
+  /* Shrinks the main title so it fits the screen width */
+  .main-title { 
+    font-size: 2.8rem; 
+    padding: 0 10px;
+  }
+
+  /* Adjusts the wrapper to use more screen space */
+  .glass-wrapper {
+    width: 92%;
+    padding: 25px 15px;
+  }
+
+  /* Prevents the countdown blocks from overlapping */
+  .countdown-row {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .time-block-clickable {
+    min-width: 70px;
+    padding: 8px 5px;
+  }
+
+  /* Makes the memory gallery 1 column so photos are large on mobile */
+  .memory-gallery {
+    grid-template-columns: 1fr;
+    padding: 20px 10px;
+  }
+
+  /* Centers the polaroids on mobile */
+  .polaroid-inner {
+    width: 80vw;
+    max-width: 280px;
+  }
+
+  /* Fixes the letter padding for smaller screens */
+  .letter-paper {
+    padding: 25px;
+    width: 85%;
+  }
+}
